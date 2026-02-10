@@ -1,6 +1,7 @@
 import { Product } from "../types/Product";
-import { parseCategories, parseProducts, parseXML } from "../parsers/parseXML";
-
+import { parseXML } from "../parsers/parseXML";
+import { parseProducts } from "../parsers/parseProducts";
+import { parseCategories } from "../parsers/parseCategories";
 
 
 const productsYmlFile = "https://tactic-shop.in.ua/content/export/27fb4f0db47159b2d77f57f20a47fe85.xml";
