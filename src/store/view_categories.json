@@ -1,0 +1,252 @@
+[
+  {
+    "id": 1,
+    "name": "Плитоноски",
+    "slug": "plitonoski",
+    "productCategoriesList": [1237]
+  },
+  {
+    "id": 2,
+    "name": "Комплекти плитоносок",
+    "slug": "komplekty-plitonosok",
+    "productCategoriesList": [1343]
+  },
+  {
+    "id": 3,
+    "name": "Бронекомплекти 1 клас",
+    "slug": "bronekomplekty-1-klas",
+    "productCategoriesList": [1507]
+  },
+  {
+    "id": 4,
+    "name": "Бронекомплекти 2 клас",
+    "slug": "bronekomplekty-2-klas",
+    "productCategoriesList": [1508]
+  },
+  {
+    "id": 5,
+    "name": "М'які бал. пакети 1 клас",
+    "slug": "myaki-bal-pakety-1-klas",
+    "productCategoriesList": [1434]
+  },
+  {
+    "id": 6,
+    "name": "М'які бал. пакети 2 клас",
+    "slug": "myaki-bal-pakety-2-klas",
+    "productCategoriesList": [1435]
+  },
+  {
+    "id": 7,
+    "name": "Бронеплити",
+    "slug": "broneplyty",
+    "productCategoriesList": [1236]
+  },
+  {
+    "id": 8,
+    "name": "Розвантажувальні системи / РПС",
+    "slug": "rozvantazhuvalni-systemy-rps",
+    "productCategoriesList": [1241, 1399, 1400, 1398, 1397]
+  },
+  {
+    "id": 9,
+    "name": "Підсумки",
+    "slug": "pidsumky",
+    "productCategoriesList": [
+      1240, 1406, 1401, 1402, 1403, 1404, 1405, 1407, 1433, 1436, 1463, 1473,
+      1483, 1484, 1496, 1497
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Наколінники та налокітники",
+    "slug": "nakolinniki-ta-nalokitnyky",
+    "productCategoriesList": [1060, 1118, 1119, 1120]
+  },
+  {
+    "id": 11,
+    "name": "Каремати та сидушки",
+    "slug": "karematy-ta-sidushky",
+    "productCategoriesList": [1065, 1121, 1124]
+  },
+  {
+    "id": 12,
+    "name": "Рюкзаки, сумки та баули",
+    "slug": "riukzaky-sumky-ta-bauly",
+    "productCategoriesList": [1056, 1501, 1502, 1503, 1504, 1505, 1506]
+  },
+  {
+    "id": 13,
+    "name": "Ремені для зброї",
+    "slug": "remeni-dlia-zbroi",
+    "productCategoriesList": [1251]
+  },
+  {
+    "id": 14,
+    "name": "Маскувальні сітки",
+    "slug": "maskuvalni-sitky",
+    "productCategoriesList": [
+      1525, 1526, 1527, 1528, 1529, 1530, 1531, 1532, 1533, 1534, 1535, 1536,
+      1537, 1538, 1539, 1540
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Маскувальні сітки з основою",
+    "slug": "maskuvalni-sitky-z-osnovoiu",
+    "productCategoriesList": [1541, 1542, 1543, 1544, 1545, 1546]
+  },
+  {
+    "id": 16,
+    "name": "Комплекти шоломів",
+    "slug": "komplekty-sholomiv",
+    "productCategoriesList": []
+  },
+  {
+    "id": 17,
+    "name": "Шоломи балістичні",
+    "slug": "sholomy-balistychni",
+    "productCategoriesList": [1145, 1510, 1511]
+  },
+  {
+    "id": 18,
+    "name": "Активні навушники та беруші",
+    "slug": "aktyvni-navushnyky-ta-berushi",
+    "productCategoriesList": [
+      1146, 1513, 1514, 1515, 1516, 1517, 1518, 1519, 1520, 1512
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Аксесуари для шоломів",
+    "slug": "aksesuary-dlia-sholomiv",
+    "productCategoriesList": [1147]
+  },
+  {
+    "id": 20,
+    "name": "Кавери на шоломи",
+    "slug": "kavery-na-sholomy",
+    "productCategoriesList": [1148]
+  },
+  {
+    "id": 21,
+    "name": "Кріплення для ПНБ та Тепловізорів",
+    "slug": "kriplennia-dlia-pnb-ta-teplovizoriv",
+    "productCategoriesList": [1159]
+  },
+  {
+    "id": 22,
+    "name": "Тактична форма та комплекти",
+    "slug": "taktychna-forma-ta-komplekty",
+    "productCategoriesList": [1155, 1523]
+  },
+  {
+    "id": 23,
+    "name": "Штани тактичні",
+    "slug": "shtany-taktychni",
+    "productCategoriesList": [1521]
+  },
+  {
+    "id": 24,
+    "name": "Тактичні убакси",
+    "slug": "taktychni-ubaksy",
+    "productCategoriesList": [1522]
+  },
+  {
+    "id": 25,
+    "name": "Тактичні кофти",
+    "slug": "taktychni-kofty",
+    "productCategoriesList": [1524]
+  },
+  {
+    "id": 26,
+    "name": "Термобілизна",
+    "slug": "termobilizna",
+    "productCategoriesList": [1499]
+  },
+  {
+    "id": 27,
+    "name": "Поло та футболки",
+    "slug": "polo-ta-futbolky",
+    "productCategoriesList": [1130]
+  },
+  {
+    "id": 28,
+    "name": "Тактичний водо-брудо захист",
+    "slug": "taktychnyi-vodo-brudo-zakhyst",
+    "productCategoriesList": []
+  },
+  {
+    "id": 29,
+    "name": "Тактичні головні убори",
+    "slug": "taktychni-holovni-ubory",
+    "productCategoriesList": [1156]
+  },
+  {
+    "id": 30,
+    "name": "Тактичні рукавиці",
+    "slug": "taktychni-rukavytsi",
+    "productCategoriesList": [1157]
+  },
+  {
+    "id": 31,
+    "name": "Тактичні шкарпетки",
+    "slug": "taktychni-shkarpetky",
+    "productCategoriesList": [1133]
+  },
+  {
+    "id": 32,
+    "name": "Тактичні шорти",
+    "slug": "taktychni-shorty",
+    "productCategoriesList": [1500]
+  },
+  {
+    "id": 33,
+    "name": "Тактичне взуття",
+    "slug": "taktychne-vzuttia",
+    "productCategoriesList": [1064]
+  },
+  {
+    "id": 34,
+    "name": "Комплектуючі та тюнінг для зброї",
+    "slug": "komplektuiuchi-ta-tiuning-dlia-zbroi",
+    "productCategoriesList": [
+      1425, 1426, 1429, 1455, 1485, 1572, 1573, 1587, 1606
+    ]
+  },
+  {
+    "id": 35,
+    "name": "Спальні мішки",
+    "slug": "spalni-mishky",
+    "productCategoriesList": [1363]
+  },
+  {
+    "id": 36,
+    "name": "Турнікети, бандажі та аптечки",
+    "slug": "turnikety-bandazhi-ta-aptechky",
+    "productCategoriesList": [1337]
+  },
+  {
+    "id": 37,
+    "name": "Спорядження та аксесуари",
+    "slug": "sporiadzhennia-ta-aksesuary",
+    "productCategoriesList": []
+  },
+  {
+    "id": 38,
+    "name": "Зарядні станції",
+    "slug": "zariadni-stantsii",
+    "productCategoriesList": [1168]
+  },
+  {
+    "id": 39,
+    "name": "Ліхтарі тактичні",
+    "slug": "likhtari-taktychni",
+    "productCategoriesList": []
+  },
+  {
+    "id": 40,
+    "name": "Патрони",
+    "slug": "patrony",
+    "productCategoriesList": [1547]
+  }
+]
