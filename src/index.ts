@@ -39,30 +39,30 @@ app.get("/get/products", async (req: Request, res: Response) => {
 
   if (productId) {
     const data = ProductRepository.getById(productId as string);
-    res.send(data);
+    return res.send(data); // return гарантує, що код далі не виконається
   }
 
   if (categoryId) {
-    const categories = await getViewCategories()
+    const categories = await getViewCategories();
     const category = categories.find(cat => cat.id === +categoryId);
 
-    if (!category) res.send(400);
+    if (!category) return res.status(400).send("Category not found");
 
     let list: Product[] = [];
 
-    category?.productCategoriesList.forEach(el => {
+    category.productCategoriesList.forEach(el => {
       const data = ProductRepository.getByCategory(el);
-      list = [...list, ...data]
-    })
+      list = [...list, ...data];
+    });
 
-    if(!vendorFilter) res.send(list);
+    if (!vendorFilter) return res.send(list);
 
-    const filteredList = list.filter(item => item.vendor===vendorFilter);
+    const filteredList = list.filter(item => item.vendor === vendorFilter);
 
-    res.send(filteredList)
+    return res.send(filteredList);
   }
 
-  res.status(400).send("productId or categoryId is required");
+  return res.status(400).send("productId or categoryId is required");
 });
 
 app.listen(3000, "0.0.0.0", () => {
