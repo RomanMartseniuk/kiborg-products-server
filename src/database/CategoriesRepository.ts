@@ -1,15 +1,15 @@
 import { db } from './db';
-import { Category } from '../types/Category';
+import { ProductCategory } from '../types/Category';
 
 export const CategoryRepository = {
    // 1️⃣ Отримати одну категорію за id
-   getById(id: number): Category | undefined {
+   getById(id: number): ProductCategory | undefined {
       const row = db.prepare(`SELECT * FROM categories WHERE id = ?`).get(id) as any;
       return row ? { ...row } : undefined;
    },
 
    // 2️⃣ Вставити одну категорію
-   insert(category: Category): void {
+   insert(category: ProductCategory): void {
       const stmt = db.prepare(`
       INSERT OR REPLACE INTO categories (id, name)
       VALUES (?, ?)
@@ -19,13 +19,13 @@ export const CategoryRepository = {
    },
 
    // 3️⃣ Вставити багато категорій у транзакції
-   insertMany(categories: Category[]): void {
+   insertMany(categories: ProductCategory[]): void {
       const insert = db.prepare(`
       INSERT OR REPLACE INTO categories (id, name)
       VALUES (?, ?)
     `);
 
-      const insertMany = db.transaction((items: Category[]) => {
+      const insertMany = db.transaction((items: ProductCategory[]) => {
          for (const c of items) {
             insert.run(c.id, c.name);
          }

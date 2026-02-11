@@ -1,4 +1,3 @@
-import { Product } from "../types/Product";
 import { parseXML } from "../parsers/parseXML";
 import { parseProducts } from "../parsers/parseProducts";
 import { parseCategories } from "../parsers/parseCategories";
@@ -62,6 +61,8 @@ async function getRrpPrices() {
 
 export async function fetchData() {
   const res = await fetch(productsYmlFile);
+
+  if (!res) return {products: undefined, categories: undefined};
   const xml = await res.text();
 
   // GETTING PRODUCTS
@@ -91,12 +92,12 @@ export async function fetchData() {
     (product) =>
       product.optPrice !== undefined &&
       product.dropPrice !== undefined
-      //   && product.available === "true",
+    //   && product.available === "true",
   );
 
   // GETTING CATEGORIES
 
   const categories = parseCategories(data);
 
-  return {products: resProducts, categories: categories};
+  return { products: resProducts, categories: categories };
 }

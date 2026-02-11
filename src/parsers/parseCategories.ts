@@ -1,8 +1,8 @@
-import { Category } from "../types/Category";
+import { ProductCategory } from "../types/Category";
 import { YmlCatalog } from "../types/YmlCatalog";
 
 // Parser for categories in XML from Tactic
-export function parseCategories(yml_catalog: YmlCatalog): Category[] {
+export function parseCategories(yml_catalog: YmlCatalog): ProductCategory[] {
    interface YmlCategory {
       '_': string,
       '$': {
