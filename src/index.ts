@@ -1,4 +1,5 @@
-const express = require("express");
+import cors from 'cors';
+import express from 'express';
 
 import type { Request, Response } from "express";
 import { initDB } from './database/db';
@@ -12,6 +13,12 @@ initDB();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+
+app.use(cors({
+  origin: 'http://localhost:5173', // дозволяємо фронт локально
+  credentials: true,               // якщо потрібні куки
+}));
 
 app.get("/update", async (req: Request, res: Response) => {
   res.send(updateLists());
