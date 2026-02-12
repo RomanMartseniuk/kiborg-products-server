@@ -15,25 +15,25 @@
     "id": 3,
     "name": "Бронекомплекти 1 клас",
     "slug": "bronekomplekty-1-klas",
-    "productCategoriesList": [1507]
+    "productCategoriesList": [1434]
   },
   {
     "id": 4,
     "name": "Бронекомплекти 2 клас",
     "slug": "bronekomplekty-2-klas",
-    "productCategoriesList": [1508]
+    "productCategoriesList": [1435]
   },
   {
     "id": 5,
     "name": "М'які бал. пакети 1 клас",
     "slug": "myaki-bal-pakety-1-klas",
-    "productCategoriesList": [1434]
+    "productCategoriesList": [1507]
   },
   {
     "id": 6,
     "name": "М'які бал. пакети 2 клас",
     "slug": "myaki-bal-pakety-2-klas",
-    "productCategoriesList": [1435]
+    "productCategoriesList": [1508]
   },
   {
     "id": 7,
