@@ -173,7 +173,7 @@
     "id": 28,
     "name": "Тактичний водо-брудо захист",
     "slug": "taktychnyi-vodo-brudo-zakhyst",
-    "productCategoriesList": []
+    "productCategoriesList": [1158]
   },
   {
     "id": 29,
@@ -229,7 +229,7 @@
     "id": 37,
     "name": "Спорядження та аксесуари",
     "slug": "sporiadzhennia-ta-aksesuary",
-    "productCategoriesList": []
+    "productCategoriesList": [1211, 1443, 1444, 1225, 1226, 1249, 1424, 1430, 1445, 1472, 1242, 1467, 1468, 1471, 1480, 1481, 1498, 1548, 1580]
   },
   {
     "id": 38,
@@ -241,7 +241,7 @@
     "id": 39,
     "name": "Ліхтарі тактичні",
     "slug": "likhtari-taktychni",
-    "productCategoriesList": []
+    "productCategoriesList": [1378, 1208, 1379, 1380, 1381, 1382, 1383, 1388, 1389]
   },
   {
     "id": 40,
