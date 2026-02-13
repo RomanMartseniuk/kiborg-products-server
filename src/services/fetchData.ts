@@ -62,7 +62,7 @@ async function getRrpPrices() {
 export async function fetchData() {
   const res = await fetch(productsYmlFile);
 
-  if (!res) return {products: undefined, categories: undefined};
+  if (!res) return { products: undefined, categories: undefined };
   const xml = await res.text();
 
   // GETTING PRODUCTS
@@ -90,7 +90,6 @@ export async function fetchData() {
 
   const resProducts = products.filter(
     (product) =>
-      product.optPrice !== undefined &&
       product.dropPrice !== undefined
     //   && product.available === "true",
   );
