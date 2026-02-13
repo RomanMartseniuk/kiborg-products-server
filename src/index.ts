@@ -14,9 +14,23 @@ initDB();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const allowedOrigins = [
+  "https://kiborg-pricelist-all-products.vercel.app",
+
+  // Local IP
+  "http://localhost:5173"
+]
 
 app.use(cors({
-  origin: 'http://localhost:5173', // дозволяємо фронт локально
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true); // для Postman / SSR
+
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,               // якщо потрібні куки
 }));
 
