@@ -3,7 +3,8 @@ export interface Product {
    groupId?: string;
    available?: string;
 
-   url: string;
+   url?: string;
+   urlMilitex?: string;
 
    price: number;
    optPrice?: number;

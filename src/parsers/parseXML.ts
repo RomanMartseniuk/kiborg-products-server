@@ -1,8 +1,8 @@
+import { HoroshopYmlCatalog, OcYmlCatalog } from "../types/YmlCatalog";
+
 const parseString = require('xml2js').parseString;
 
-import { YmlCatalog } from "../types/YmlCatalog";
-
-export function parseXML(xml: string): Promise<YmlCatalog> {
+export function parseXML(xml: string): Promise<HoroshopYmlCatalog | OcYmlCatalog> {
   return new Promise((res, rej) => {
     parseString(xml, { explicitArray: false }, (err: any, result: any) => {
       if (err) return rej(err);
@@ -11,7 +11,3 @@ export function parseXML(xml: string): Promise<YmlCatalog> {
     })
   })
 }
-
-// ! Products --> result.yml_catalog.shop.offers.offer
-
-// ! Categories --> result.yml_catalog.shop.offers.offer

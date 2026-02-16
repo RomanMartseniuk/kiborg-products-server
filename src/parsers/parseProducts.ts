@@ -1,8 +1,8 @@
 import { Product } from "../types/Product";
-import { YmlCatalog } from "../types/YmlCatalog";
+import { HoroshopYmlCatalog } from "../types/YmlCatalog";
 
 // Parser for products in XML from Tactic / Sales
-export function parseProducts(yml_catalog: YmlCatalog): Product[] {
+export function parseProducts(yml_catalog: HoroshopYmlCatalog): Product[] {
    interface YmlOffer {
       '$': {
          id: string,

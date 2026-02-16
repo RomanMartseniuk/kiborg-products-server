@@ -41,20 +41,21 @@ export const ProductRepository = {
       const stmt = db.prepare(`
       INSERT OR REPLACE INTO products (
         id, groupId, available,
-        url,
+        url, urlMilitex,
         price, optPrice, dropPrice,
         currencyId, categoryId,
         pictures,
         vendorCode, vendor,
         name, description
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `);
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+   `);
 
       stmt.run(
          product.id,
          product.groupId ?? null,
          product.available ?? null,
-         product.url,
+         product.url ?? null,
+         product.urlMilitex ?? null,
          product.price,
          product.optPrice ?? null,
          product.dropPrice ?? null,
@@ -71,16 +72,16 @@ export const ProductRepository = {
    // 5️⃣ Масова вставка продуктів
    insertMany(products: Product[]): void {
       const insert = db.prepare(`
-      INSERT OR REPLACE INTO products (
-        id, groupId, available,
-        url,
-        price, optPrice, dropPrice,
-        currencyId, categoryId,
-        pictures,
-        vendorCode, vendor,
-        name, description
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `);
+         INSERT OR REPLACE INTO products (
+         id, groupId, available,
+         url, urlMilitex,
+         price, optPrice, dropPrice,
+         currencyId, categoryId,
+         pictures,
+         vendorCode, vendor,
+         name, description
+         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      `);
 
       const insertMany = db.transaction((items: Product[]) => {
          for (const p of items) {
@@ -88,7 +89,8 @@ export const ProductRepository = {
                p.id,
                p.groupId ?? null,
                p.available ?? null,
-               p.url,
+               p.url ?? null,
+               p.urlMilitex ?? null,
                p.price,
                p.optPrice ?? null,
                p.dropPrice ?? null,

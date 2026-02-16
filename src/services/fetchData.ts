@@ -1,6 +1,8 @@
 import { parseXML } from "../parsers/parseXML";
 import { parseProducts } from "../parsers/parseProducts";
 import { parseCategories } from "../parsers/parseCategories";
+import { parseUrls } from "../parsers/parseUrls";
+import { HoroshopYmlCatalog, OcYmlCatalog } from "../types/YmlCatalog";
 
 
 const productsYmlFile = "https://tactic-shop.in.ua/content/export/27fb4f0db47159b2d77f57f20a47fe85.xml";
@@ -14,49 +16,44 @@ const dropYmlFile =
 const rrpYmlFile =
   "https://kiborg.salesdrive.me/export/yml/export.yml?publicKey=JAvWTZJQXYHA15-Adae5O-JRlHOuDA97l1SBWVXpy_Okn3WEsPjQKZmcbiOGYCfWYNC6_M42GBn5";
 
-async function getOptPrices() {
-  const res = await fetch(optYmlFile);
+const urlsKiborgYmlFile = 'https://kiborg.com.ua/price/romaexport.xml';
+
+const urlsMilitexYmlFile = 'https://militex.in.ua/price/roma_export_militex.xml';
+
+async function getPrices(url: string) {
+  const res = await fetch(url);
   const xml = await res.text();
 
   const data = await parseXML(xml);
 
-  const products = parseProducts(data);
+  const products = parseProducts(data as HoroshopYmlCatalog);
 
   const prices = products.map((product) => ({
-    id: product.vendorCode,
+    vendorCode: product.vendorCode,
     price: product.price,
   }));
 
   return prices;
 }
 
-async function getDropPrices() {
-  const res = await fetch(dropYmlFile);
+async function getUrls(url: string) {
+  const res = await fetch(url);
   const xml = await res.text();
 
   const data = await parseXML(xml);
+  const urls = parseUrls(data as OcYmlCatalog);
 
-  const products = parseProducts(data);
-  const prices = products.map((product) => ({
-    id: product.vendorCode,
-    price: product.price,
-  }));
-
-  return prices;
+  return urls;
 }
 
-async function getRrpPrices() {
-  const res = await fetch(rrpYmlFile);
+async function getMilitexUrls() {
+  const res = await fetch(urlsMilitexYmlFile);
   const xml = await res.text();
 
-  const data = await parseXML(xml);
-
+  const data = await parseXML(xml) as HoroshopYmlCatalog;
   const products = parseProducts(data);
-  const prices = products.map((product) => ({
-    id: product.vendorCode,
-    price: product.price,
-  }));
-  return prices;
+
+  return products.map(item => ({vendorCode: item.vendorCode, url:item.url}))
 }
 
 export async function fetchData() {
@@ -65,38 +62,52 @@ export async function fetchData() {
   if (!res) return { products: undefined, categories: undefined };
   const xml = await res.text();
 
-  // GETTING PRODUCTS
+  // --- GETTING PRODUCTS ---
 
-  const optPrices = await getOptPrices();
-  const dropPrices = await getDropPrices();
-  const rrpPrices = await getRrpPrices();
+  // Getting prices
+  const optPrices = await getPrices(optYmlFile);
+  const dropPrices = await getPrices(dropYmlFile);
+  const rrpPrices = await getPrices(rrpYmlFile);
 
+  //Getting urls
+  const kiborgUrls = await getUrls(urlsKiborgYmlFile);
+
+  const militexUrls = await getMilitexUrls();
+
+  // Getting products data
   const data = await parseXML(xml);
+  let products = parseProducts(data as HoroshopYmlCatalog);
 
-  let products = parseProducts(data);
-
+  // Putting all needed data into products
   products = products.map((product) => {
-    const optPriceObj = optPrices.find((p) => p.id === product.vendorCode);
-    const dropPriceObj = dropPrices.find((p) => p.id === product.vendorCode);
-    const rrpPriceObj = rrpPrices.find((p) => p.id === product.vendorCode);
+    const optPriceObj = optPrices.find((p) => p.vendorCode === product.vendorCode);
+    const dropPriceObj = dropPrices.find((p) => p.vendorCode === product.vendorCode);
+    const rrpPriceObj = rrpPrices.find((p) => p.vendorCode === product.vendorCode);
+
+    const url = kiborgUrls.find((p: any) => p.vendorCode === product.vendorCode);
+    const urlMilitex = militexUrls.find((p: any) => p.vendorCode === product.vendorCode);
 
     return {
       ...product,
       price: rrpPriceObj ? rrpPriceObj.price : product.price,
       optPrice: optPriceObj ? optPriceObj.price : undefined,
       dropPrice: dropPriceObj ? dropPriceObj.price : undefined,
+
+      url: url ? url.url : undefined,
+      urlMilitex: urlMilitex ? urlMilitex?.url : undefined
     };
   });
 
+  // Filtering products by including drop price
   const resProducts = products.filter(
     (product) =>
       product.dropPrice !== undefined
     //   && product.available === "true",
   );
 
-  // GETTING CATEGORIES
+  // --- GETTING CATEGORIES ---
 
-  const categories = parseCategories(data);
+  const categories = parseCategories(data as HoroshopYmlCatalog);
 
   return { products: resProducts, categories: categories };
 }

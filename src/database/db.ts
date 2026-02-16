@@ -6,7 +6,7 @@ export const db = new Database('store.db');
 db.pragma('foreign_keys = ON');
 
 export function initDB() {
-   db.exec(`
+  db.exec(`
     CREATE TABLE IF NOT EXISTS categories (
       id INTEGER PRIMARY KEY,
       name TEXT NOT NULL
@@ -17,7 +17,8 @@ export function initDB() {
       groupId TEXT,
       available TEXT,
 
-      url TEXT NOT NULL,
+      url TEXT,
+      urlMilitex TEXT,
 
       price REAL NOT NULL,
       optPrice REAL,
@@ -26,7 +27,7 @@ export function initDB() {
       currencyId TEXT NOT NULL,
       categoryId INTEGER NOT NULL,
 
-      pictures TEXT, -- JSON
+      pictures TEXT, -- JSON array
 
       vendorCode TEXT,
       vendor TEXT,
