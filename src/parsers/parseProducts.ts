@@ -22,7 +22,7 @@ export function parseProducts(yml_catalog: HoroshopYmlCatalog): Product[] {
 
       price: string;
 
-      picture: string[],
+      picture?: string | string[];
 
 
       [key: string]: unknown;
@@ -31,6 +31,12 @@ export function parseProducts(yml_catalog: HoroshopYmlCatalog): Product[] {
    const data = yml_catalog.shop.offers.offer as YmlOffer[];
 
    return data.map(item => {
+      const pictures = Array.isArray(item.picture)
+         ? item.picture
+         : item.picture
+            ? [item.picture]
+            : undefined;
+
       return {
          id: item['$'].id,
          available: item['$'].available,
@@ -42,7 +48,7 @@ export function parseProducts(yml_catalog: HoroshopYmlCatalog): Product[] {
          currencyId: item.currencyId,
          categoryId: item.categoryId,
 
-         pictures: item.picture,
+         pictures,
 
          vendorCode: item.vendorCode,
          vendor: item.vendor,

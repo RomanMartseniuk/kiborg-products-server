@@ -5,7 +5,7 @@ import { parseUrls } from "../parsers/parseUrls";
 import { HoroshopYmlCatalog, OcYmlCatalog } from "../types/YmlCatalog";
 
 
-const productsYmlFile = "https://tactic-shop.in.ua/content/export/27fb4f0db47159b2d77f57f20a47fe85.xml";
+const productsYmlFile = "https://tactic-shop.in.ua/content/export/9e361824cf437875c1d127d922749d85.xml";
 
 const optYmlFile =
   "https://kiborg.salesdrive.me/export/yml/export.yml?publicKey=kMkMQtPoiHXLUiVC1ywksAJsBS_shaRrMpzxfXI-vBhV-1snCToX0P0GOtryZgAUcZ2Yx1I";
