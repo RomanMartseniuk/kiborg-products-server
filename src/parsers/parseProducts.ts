@@ -6,7 +6,8 @@ export function parseProducts(yml_catalog: HoroshopYmlCatalog): Product[] {
    interface YmlOffer {
       '$': {
          id: string,
-         available: string
+         available: string,
+         group_id?: string
       },
 
       vendorCode: string,
@@ -24,11 +25,16 @@ export function parseProducts(yml_catalog: HoroshopYmlCatalog): Product[] {
 
       picture?: string | string[];
 
-
+      param?: {
+         '_': string,
+         '$': {
+            name: string
+         }
+      }[]
       [key: string]: unknown;
    }
-
    const data = yml_catalog.shop.offers.offer as YmlOffer[];
+
 
    return data.map(item => {
       const pictures = Array.isArray(item.picture)
@@ -37,9 +43,23 @@ export function parseProducts(yml_catalog: HoroshopYmlCatalog): Product[] {
             ? [item.picture]
             : undefined;
 
+      const rawParams = item.param;
+
+      const paramsArray = Array.isArray(rawParams)
+         ? rawParams
+         : rawParams
+            ? [rawParams]
+            : [];
+
+      const params = paramsArray.map(p => ({
+         name: p.$?.name ?? "",
+         value: p._ ?? ""
+      }));
+
       return {
          id: item['$'].id,
          available: item['$'].available,
+         groupId: item.$.group_id,
 
          url: item.url,
 
@@ -55,6 +75,8 @@ export function parseProducts(yml_catalog: HoroshopYmlCatalog): Product[] {
 
          name: item.name,
          description: item.description,
+
+         params
       }
    })
 }

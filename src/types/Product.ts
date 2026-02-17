@@ -20,4 +20,9 @@ export interface Product {
 
    name: string;
    description: string;
+
+   params?: {
+      name: string;
+      value: string;
+   }[]
 }

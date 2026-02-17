@@ -3,6 +3,7 @@ import { parseProducts } from "../parsers/parseProducts";
 import { parseCategories } from "../parsers/parseCategories";
 import { parseUrls } from "../parsers/parseUrls";
 import { HoroshopYmlCatalog, OcYmlCatalog } from "../types/YmlCatalog";
+import { filterProductsBySizeGroup } from "../utils/filterProductsBySizeGroups";
 
 
 const productsYmlFile = "https://tactic-shop.in.ua/content/export/9e361824cf437875c1d127d922749d85.xml";
@@ -99,11 +100,13 @@ export async function fetchData() {
   });
 
   // Filtering products by including drop price
-  const resProducts = products.filter(
+  let resProducts = products.filter(
     (product) =>
       product.dropPrice !== undefined
     //   && product.available === "true",
   );
+
+  resProducts = filterProductsBySizeGroup(resProducts)
 
   // --- GETTING CATEGORIES ---
 
