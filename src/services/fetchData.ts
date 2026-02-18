@@ -54,7 +54,7 @@ async function getMilitexUrls() {
   const data = await parseXML(xml) as HoroshopYmlCatalog;
   const products = parseProducts(data);
 
-  return products.map(item => ({vendorCode: item.vendorCode, url:item.url}))
+  return products.map(item => ({ vendorCode: item.vendorCode, url: item.url }))
 }
 
 export async function fetchData() {
@@ -103,7 +103,7 @@ export async function fetchData() {
   let resProducts = products.filter(
     (product) =>
       product.dropPrice !== undefined
-    //   && product.available === "true",
+      && product.available === "true",
   );
 
   resProducts = filterProductsBySizeGroup(resProducts)
