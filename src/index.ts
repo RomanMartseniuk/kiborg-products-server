@@ -14,12 +14,18 @@ initDB();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const allowedOrigins = [
-  "https://kiborg-pricelist-all-products.vercel.app",
+// const allowedOrigins = [
+//   "https://kiborg-pricelist-all-products.vercel.app",
+//   "https://kiborg-pricelist-kiborg-products.vercel.app",
+//   "https://kiborg-pricelist-militex-products.vercel.app",
 
-  // Local IP
-  "http://localhost:5173"
-]
+//   // Local IP
+//   "http://localhost:5173"
+// ]
+
+const allowedOrigins = process.env.CORS_ALLOWED_ORIGINS
+  ? process.env.CORS_ALLOWED_ORIGINS.split(",").map(o => o.trim())
+  : [];
 
 app.use(cors({
   origin: function (origin, callback) {
