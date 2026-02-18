@@ -43,9 +43,31 @@ app.get("/status", (req: Request, res: Response) => {
 });
 
 app.get("/get/categories", async (req: Request, res: Response) => {
-  const data = await getViewCategories();
-  const resData = data.map(({ productCategoriesList, ...rest }) => rest);
-  res.send(resData);
+  const { vendorFilter } = req.query;
+  try {
+    const data = await getViewCategories();
+
+    const resData = await Promise.all(
+      data.map(async ({ productCategoriesList, ...rest }) => {
+        let products: Product[] = [];
+
+        productCategoriesList.forEach(el => {
+          const data = ProductRepository.getByCategory(el);
+          products = [...products, ...data];
+        });
+        if (vendorFilter) products = products.filter(p => p.vendor === vendorFilter)
+
+        return {
+          ...rest,
+          isEmpty: products.length === 0,
+        };
+      })
+    );
+
+    res.json(resData);
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
 });
 
 app.get("/get/products", async (req: Request, res: Response) => {
@@ -69,11 +91,11 @@ app.get("/get/products", async (req: Request, res: Response) => {
       list = [...list, ...data];
     });
 
-    if (!vendorFilter) return res.send(list.map(item => ({...item, urlMilitex: undefined})));
+    if (!vendorFilter) return res.send(list.map(item => ({ ...item, urlMilitex: undefined })));
 
     let filteredList = list.filter(item => item.vendor === vendorFilter);
     if (vendorFilter === 'Militex') {
-      filteredList = filteredList.map(item => ({...item, url: item.urlMilitex, urlMilitex: undefined}))
+      filteredList = filteredList.map(item => ({ ...item, url: item.urlMilitex, urlMilitex: undefined }))
     } else {
       filteredList = filteredList.map(item => ({ ...item, urlMilitex: undefined }))
     }
