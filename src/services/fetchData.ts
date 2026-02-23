@@ -38,7 +38,13 @@ async function getPrices(url: string) {
 }
 
 async function getUrls(url: string) {
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    headers: {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+      "Accept": "application/xml,text/xml,*/*",
+      "Accept-Language": "en-US,en;q=0.9"
+    }
+  });
 
   const xml = await res.text();
 
