@@ -25,9 +25,9 @@ async function getPrices(url: string) {
   const res = await fetch(url);
   const xml = await res.text();
 
-  const data = await parseXML(xml);
+  const {yml_catalog} = await parseXML(xml);
 
-  const products = parseProducts(data as HoroshopYmlCatalog);
+  const products = parseProducts(yml_catalog as HoroshopYmlCatalog);
 
   const prices = products.map((product) => ({
     vendorCode: product.vendorCode,
@@ -41,8 +41,8 @@ async function getUrls(url: string) {
   const res = await fetch(url);
   const xml = await res.text();
 
-  const data = await parseXML(xml);
-  const urls = parseUrls(data as OcYmlCatalog);
+  const {yml_catalog} = await parseXML(xml);
+  const urls = parseUrls(yml_catalog as OcYmlCatalog);
 
   return urls;
 }
@@ -51,8 +51,8 @@ async function getMilitexUrls() {
   const res = await fetch(urlsMilitexYmlFile);
   const xml = await res.text();
 
-  const data = await parseXML(xml) as HoroshopYmlCatalog;
-  const products = parseProducts(data);
+  const {yml_catalog} = await parseXML(xml);
+  const products = parseProducts(yml_catalog as HoroshopYmlCatalog);
 
   return products.map(item => ({ vendorCode: item.vendorCode, url: item.url }))
 }
@@ -76,8 +76,16 @@ export async function fetchData() {
   const militexUrls = await getMilitexUrls();
 
   // Getting products data
-  const data = await parseXML(xml);
-  let products = parseProducts(data as HoroshopYmlCatalog);
+  const {yml_catalog, descriptions} = await parseXML(xml);
+  let products = parseProducts(yml_catalog as HoroshopYmlCatalog);
+
+  products = products.map(product => {
+    const descriptionObj = descriptions.find(d => d.vendorCode === product.vendorCode);
+    return {
+      ...product,
+      description: descriptionObj ? descriptionObj.description : product.description
+    }
+  });
 
   // Putting all needed data into products
   products = products.map((product) => {
@@ -110,7 +118,7 @@ export async function fetchData() {
 
   // --- GETTING CATEGORIES ---
 
-  const categories = parseCategories(data as HoroshopYmlCatalog);
+  const categories = parseCategories(yml_catalog as HoroshopYmlCatalog);
 
   return { products: resProducts, categories: categories };
 }
