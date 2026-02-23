@@ -39,10 +39,22 @@ async function getPrices(url: string) {
 
 async function getUrls(url: string) {
   const res = await fetch(url);
+
   const xml = await res.text();
 
-  const {yml_catalog} = await parseXML(xml);
+  console.log("FIRST 300:");
+  console.log(xml.slice(0, 300));
+
+  const { yml_catalog } = await parseXML(xml);
   const urls = parseUrls(yml_catalog as OcYmlCatalog);
+
+  console.log("=== SERVER DEBUG START ===");
+  console.log("URL:", url);
+  console.log("STATUS:", res.status);
+  console.log("CONTENT-TYPE:", res.headers.get("content-type"));
+  console.log("FIRST 500:");
+  console.log(xml.slice(0, 500));
+  console.log("=== SERVER DEBUG END ===");
 
   return urls;
 }
